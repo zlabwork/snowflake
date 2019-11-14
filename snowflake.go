@@ -144,6 +144,11 @@ func (f ID) Int64() int64 {
 	return int64(f)
 }
 
+// Uint64 returns an uint64 of the snowflake ID
+func (f ID) Uint64() uint64 {
+	return uint64(f)
+}
+
 // String returns a string of the snowflake ID
 func (f ID) String() string {
 	return strconv.FormatInt(int64(f), 10)
