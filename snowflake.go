@@ -15,15 +15,15 @@ import (
 var (
 	// Epoch is set to the twitter snowflake epoch of Nov 04 2010 01:42:54 UTC
 	// You may customize this to set a different epoch for your application.
-	Epoch int64 = 1498612200
+	Epoch int64 = 149861220000
 
 	// Number of bits to use for Node
-	// Remember, you have a total 22 bits to share between Node/Step
-	NodeBits uint8 = 5
+	// Remember, you have a total 14 bits to share between Node/Step
+	NodeBits uint8 = 6
 
 	// Number of bits to use for Step
-	// Remember, you have a total 22 bits to share between Node/Step
-	StepBits uint8 = 16
+	// Remember, you have a total 14 bits to share between Node/Step
+	StepBits uint8 = 8
 
 	nodeMax   int64 = -1 ^ (-1 << NodeBits)
 	nodeMask  int64 = nodeMax << StepBits
@@ -113,14 +113,14 @@ func (n *Node) Generate() ID {
 
 	n.mu.Lock()
 
-	now := time.Now().Unix()
+	now := time.Now().UnixNano() / 10000000
 
 	if n.time == now {
 		n.step = (n.step + 1) & stepMask
 
 		if n.step == 0 {
 			for now <= n.time {
-				now = time.Now().Unix()
+				now = time.Now().UnixNano() / 10000000
 			}
 		}
 	} else {
