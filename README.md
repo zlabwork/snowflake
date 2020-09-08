@@ -52,7 +52,7 @@ snowflake short 默认格式如下.
 需要先安装GoLang的运行环境, 如果没有请移步[这里](https://golang.org/doc/install).
 
 ```sh
-go get github.com/xxtime/snowflake-short
+go get github.com/zlabwork/snowflake
 ```
 
 
@@ -70,8 +70,7 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/xxtime/snowflake-short"
+	"github.com/zlabwork/snowflake"
 )
 
 func main() {
